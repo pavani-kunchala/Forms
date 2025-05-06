@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reg Form</title>
+    <style type="text/css">
+        body{
+            font-family: Calibri;
+             text-align: center;
+        }
+        input[type="text"] {
+            width: 250px;
+        }
+        input[type="submit"], input[type="reset"] {
+            width: 77px;
+            height: 27px;
+            position: relative;left: 180px;
+        }
+        form{
+             text-align: center;
+            font-family: Calibri;
+            font-size: 20px;
+            display: inline-block;
+        }
+        fieldset{
+            background-color: #FFEA00;
+             border: 1px solid black;
+              margin:auto;
+        }
+        td {
+             padding: 10px;
+        }
+        td:first-child {
+            text-align: right;
+            font-weight: bold;
+        }
+        td:last-child {
+            text-align: left;
+        }
+         
+    </style>
+    <script>
+        function validate() {
+            var fname = document.reg_form.fname;
+            var lname = document.reg_form.lname;
+            var address = document.reg_form.address;
+            var gender = document.reg_form.gender;
+            var email = document.reg_form.email;
+            let pswd = document.reg_form.pass.value;
+            var mobile = document.reg_form.mobile;
+            var dob = document.reg_form.birthday;
+            var course = document.reg_form.course;
+            var upload = document.reg_form.upload;
+
+            if (fname.value.length <= 0) {
+                alert("Name is required");
+                fname.focus();
+                return false;
+            }
+            if (lname.value.length <= 0) {
+                alert("Last Name is required");
+                lname.focus();
+                return false;
+            }
+            if (address.value.length <= 0) {
+                alert("Address is required");
+                address.focus();
+                return false;
+            }
+            if (gender.value.length <= 0) {
+                alert("Gender is required");
+                gender.focus();
+                return false;
+            }
+            if (email.value.length <= 0) {
+                alert("Email Id is required");
+                 document.getElementById('email').style.border="2px red solid";
+                email.focus();
+                return false;
+            }
+            if( pswd=="" || pswd==null)
+            {
+                alert("enter password");
+                pswd.focus();
+                return false;
+            }
+            if (mobile.value.length <= 0) 
+            {
+                alert("Mobile number is required");
+                mobile.focus();
+                return false;
+            }
+            if (dob==""|| dob== null){
+                alert("Data of birth is required");
+                dob.focus();
+                return false;
+            }
+            if (course.value == "select course") {
+                alert("Course is required");
+                course.focus();
+                return false;
+            }
+             if (upload==""||upload== null) {
+                alert("Choose atleast 1 file");
+                upload.focus();
+                return false;
+            }
+            return true;
+        }
+         function valname(id)
+        {
+            let element=document.getElementById('name1');
+            let regex=/^[a-zA-Z]+$/;
+            if(!regex.test(element.value))
+            {
+                document.getElementById('lbname').style.visibility='visible';
+                element.style.border="4px solid red";
+                return false;
+            }
+            document.getElementById('lbname').style.visibility='hidden';
+            element.style.border="4px solid green";
+        }
+         function valname2(id)
+        {
+            let element=document.getElementById('name2');
+            let regex=/^[a-zA-Z]+$/;
+            if(!regex.test(element.value))
+            {
+                document.getElementById('lbname2').style.visibility='visible';
+                element.style.border="4px solid red";
+                return false;
+            }
+            document.getElementById('lbname2').style.visibility='hidden';
+            element.style.border="4px solid green";
+        }
+        function valmail(id)
+        {
+            let ele=document.getElementById(id);
+            let regemail=/^([a-zA-Z0-9 \- \.]+)[@]([a-z]+)[\.][a-z]{2,3}$/;
+            if(!regemail.test(ele.value))
+            {
+                document.getElementById('lbmail').style.visibility='visible';
+                ele.style.border="4px red solid";
+                return false;
+            }
+            document.getElementById('lbmail').style.visibility='hidden';
+            ele.style.border="4px solid #00ff00";
+        }
+        function valpass(id)
+        {
+            let elpass=document.getElementById(id);
+            if(elpass.value.length<=6)
+            {
+                document.getElementById('lbpass').style.visibility="visible";
+                elpass.style.border="4px red solid";
+                return false;
+            }
+            document.getElementById('lbpass').style.visibility="hidden";
+                elpass.style.border="4px solid #00ff00";
+       }
+       function valmob(id)
+       {
+        let numb=document.getElementById(id);
+        let regexnum=/^[0-9]{10}$/;
+        if(!regexnum.test(numb.value))
+        {
+            document.getElementById('lbmob').style.visibility="visible";
+            numb.style.border="4px red solid";
+            return false;
+        }
+        document.getElementById('lbmob').style.visibility='hidden';
+        numb.style.border='4px solid #00ff00';
+
+       }
+    </script>
+</head>
+<body>
+   
+    <form method="" action="" name="reg_form" onsubmit="return validate()">
+         <fieldset style="height:800px;width:450px;">
+        <legend align="center"><strong>Registration Form</strong></legend> 
+        <table>
+            <tr>
+                <td><label>First Name: </label></td>
+                <td>
+                    <input type="text" name="fname" placeholder="First Name" id="name1" onblur="valname(this.id)">
+                </td>
+                <td>
+                    <label id="lbname" style="color:red;visibility: hidden;">Invalid</label>
+                </td>
+
+            </tr>
+            <tr>
+                <td><label>Last Name: </label></td>
+                <td>
+                    <input type="text" name="lname" placeholder="Last Name" id="name2" onblur="valname2(this.id)">
+                </td>
+                <td>
+                    <label id="lbname2" style="color:red;visibility: hidden;">Invalid</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Address: </label></td>
+                <td>
+                    <textarea size="50" name="address" rows="3" cols="33" placeholder="Address"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Gender: </label></td>
+                <td>
+                    <input type="radio" name="gender" value="male">Male
+                    <input type="radio" name="gender" value="femele">Female
+                </td>
+            </tr>
+            <tr>
+                <td><label>Email Id: </label></td>
+                <td>
+                    <input type="text" name="email" placeholder="example@gmail.com"  id="email" onblur="valmail(this.id)">
+                </td>
+                <td>
+                    <label id="lbmail" style="color:red;visibility: hidden;">Invalid</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Password: </label></td>
+                <td>
+                    <input type="password" placeholder="Password" name="pass" id="pass" onblur="valpass(this.id)"></td>
+                </td>
+                <td>
+                    <label id="lbpass" style="color:red; visibility: hidden;">Above 6 char</label>
+                </td>
+                <td ><a href="forgot_Pswd_form.html"> Forgot Password</a></td>
+            </tr>
+            <tr> 
+                <td><label>Mobile: </label></td>
+                <td>
+                    <input type="number" placeholder="Mobile No." name="mobile"id="mobile" onblur="valmob(this.id)">
+                </td>
+                <td>
+                    <label id="lbmob" style="color:red;visibility:hidden;">Invalid</label>
+                </td>
+            </tr>
+             <tr>
+                <td><label>Date of Birth: </label></td>
+                <td>
+                    <input type="date" id="birthday" name="birthday">
+                </td>               
+            </tr> 
+            <tr>
+                <td><label>Hobbies: </label> </td>
+                <td><input type="checkbox" name="hobbies" value="Reading books">Reading books</td>
+                <td><input type="checkbox" name="hobbies" value="Watching movies"checked>Watching movies</td>
+                <td><input type="checkbox" name="hobbies" value="Playing games">Playing games</td>
+            </tr> 
+            <tr>
+            <td><label>Course: </label></td>
+                <td>
+                    <select name="course">
+                        <option value="select course">select course</option>
+                        <option value="HTML">HTML</option>
+                        <option value="CSS">CSS</option>
+                        <option value="JavaScript">JAVASCRIPT</option>
+                        <option value="Java">JAVA</option>
+                    </select>
+                </td>
+            </tr>
+              <tr>
+                <td><label>Upload</label></td>
+                <td><input type="file" name="upload" id="file-select"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="submit" value="Submit">
+                </td>
+                <td>
+                    <input type="reset" name="reset" value="Reset">
+                </td>
+            </tr>
+             <tr><td colspan="4">If you already have registered <a href="SignInForm.html"> Sign IN</a></td></tr>
+        </table>
+        </fieldset>
+    </form>
+</body>
+</html>
